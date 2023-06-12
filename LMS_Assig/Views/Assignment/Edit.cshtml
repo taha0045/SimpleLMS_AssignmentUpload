@@ -1,0 +1,18 @@
+﻿@model LMS_Assig_.Models.Assignment
+
+<h2>Edit Assignment</h2>
+
+<form asp-action="Edit" asp-route-id="@Model.Id">
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Name"></label>
+        <textarea asp-for="Name" class="form-control" rows="10"></textarea>
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

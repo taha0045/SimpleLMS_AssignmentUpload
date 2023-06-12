@@ -1,0 +1,65 @@
+﻿@using LMS_Assig_.ViewModel;
+@model AssignmentViewModel
+
+<div class="container">
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Section Name</th>
+                <th>Assignment Name</th>
+                <th>Upload date</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+                <!-- Add additional table headers here -->
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var assignment in Model.FilterAssignments)
+            {
+                <tr>
+                    <td>@assignment.SectionName</td>
+                    <td>@assignment.Name</td>
+                    <td>@assignment.UploadDate</td>
+
+                    @{
+                        var row = Model.assignments.FirstOrDefault(o => o.assgnID == assignment.Id && o.userId == Model.ApplicationUser.Id);
+                        if (row != null)
+                        {
+                            <td id="checkBox">Submitted</td>
+                        }
+                        else
+                        {
+                            <td id="checkBox">Pending</td>
+                        }
+                    }
+
+                    <td>
+                        <a asp-action="Download" class="btn btn-primary mx-2" asp-route-fileName="@assignment.FilePath">Download File</a>
+
+                        @if (row != null)
+                        {
+                            <button id="uploadBtn" class="btn btn-success mx-2" disabled>Upload File</button>
+                            <a asp-action="AnsFiles" class="btn btn-warning mx-2">View File</a>
+                        }
+                        else
+                        {
+                            <a asp-action="UploadAnswer" class="btn btn-success mx-2" asp-route-id="@assignment.Id">Upload File</a>
+                        }
+                    </td>
+                    <!-- Add additional table cells here -->
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+@*<script>
+    var checkBox = document.getElementById("checkBox");
+    var uploadBtn = document.getElementById("uploadBtn");
+
+    if (checkBox.innerHTML === "Submitted") {
+        uploadBtn.style.display = "none";
+    }
+</script>*@

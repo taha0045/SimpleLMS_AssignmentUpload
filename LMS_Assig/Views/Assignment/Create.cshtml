@@ -1,0 +1,71 @@
+﻿@*@using LMS_Assig_.ViewModel;
+@model AssignmentViewModel
+
+<form asp-action="Create" enctype="multipart/form-data">
+    <div class="form-group">
+        <label asp-for="Assignment.Name" class="control-label"></label>
+        <input asp-for="Assignment.Name" class="form-control" />
+        <span asp-validation-for="Assignment.Name" class="text-danger"></span>
+    </div>
+    @if (Model.SectionSelectList != null)
+    {
+
+        <div class="col-6 mb-3">
+            <label for="recipient-name" class="col-form-label inter">Company</label>
+            <select asp-for="Assignment.SectionID"
+                    id="cmbCompany"
+                    class="form-control"
+                asp-items="@(new SelectList(Model.SectionSelectList,"SectionId", "Name"))">
+                <option value="" data-display-text="Choose an option">Select Company</option>
+            </select>
+            <span asp-validation-for="Assignment.SectionID" class="text-danger"></span>
+            <!-- <input type="text" class="form-control" id="recipient-name"> -->
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="Assignment.UploadDate" class="control-label"></label>
+        <input asp-for="Assignment.UploadDate" class="form-control" />
+        <span asp-validation-for="Assignment.UploadDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Assignment.AssignmentFile" class="control-label"></label>
+        <input asp-for="Assignment.AssignmentFile" type="file" class="form-control-file" />
+        <span asp-validation-for="Assignment.AssignmentFile" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+    </div>
+</form>*@
+@*@model  LMS_Assig_.ViewModel.AssignmentViewModel
+
+<h2>Create Assignment</h2>
+
+<form asp-action="Create" enctype="multipart/form-data">
+    @if (Model.SectionSelectList != null)
+    {
+
+        <div class="col-6 mb-3">
+            <label for="recipient-name" class="col-form-label inter">Section</label>
+            <select asp-for="Assignment.SectionID"
+                    id="cmbCompany"
+                    class="form-control"
+                asp-items="@(new SelectList(Model.SectionSelectList,"SectionId", "Name"))">
+                <option value="" data-display-text="Choose an option">Select Section</option>
+            </select>
+            <span asp-validation-for="Assignment.SectionID" class="text-danger"></span>
+            <!-- <input type="text" class="form-control" id="recipient-name"> -->
+        </div>
+    }
+    <div class="form-group">
+        <label asp-for="@Model.Assignment.Name"></label>
+        <input asp-for="@Model.Assignment.Name" class="form-control" />
+        <span asp-validation-for="@Model.Assignment.Name" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Upload Files:</label>
+        <input asp-for="Files" type="file" multiple class="form-control-file" />
+        <span asp-validation-for="Files" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Create</button>
+</form>
+*@
